@@ -13,12 +13,12 @@
     "clean": "rm -rf .next out dist node_modules/.cache"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^5.0.1",
-    "@mui/icons-material": "^7.0.2",
-    "@mui/material": "^7.0.2",
-    "@mui/x-date-pickers": "^8.1.0",
+    "@mui/icons-material": "^6.0.0-alpha.0",
+    "@mui/material": "^6.0.0-alpha.0",
+    "@mui/x-date-pickers": "^7.0.0",
     "@paypal/react-paypal-js": "^8.8.3",
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.8.4",

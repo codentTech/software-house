@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronRight,
+  Star,
+  CheckCircle,
+  ArrowRight,
+  Play,
+  Users,
+  Award,
+  Zap,
+} from "lucide-react";
 
 // Header Component
 const Header = () => {
@@ -28,64 +39,37 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 animate-slide-in ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "glass-card shadow-strong border-b border-primary-100"
-          : "bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900"
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-purple-100"
+          : "bg-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 animate-bounce-in">
-            <h1
-              className={`text-xl font-bold transition-all duration-500 hover-scale ${
-                isScrolled ? "text-gradient-primary" : "text-white"
-              }`}
-            >
-              SoftwareHouse
-            </h1>
+          <div className="flex-shrink-0">
+            <h1 className="text-xl font-bold text-purple-700">SoftwareHouse</h1>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
-            {navigation.map((item, index) => (
+          <nav className="hidden md:flex space-x-8">
+            {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`nav-link relative px-3 py-2 text-sm font-medium transition-all duration-500 group animate-fade-in ${
-                  isScrolled
-                    ? "text-text-secondary hover:text-primary-600"
-                    : "text-white hover:text-primary-200"
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200 relative group"
               >
-                <span className="relative z-10">{item.name}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-300 group-hover:w-full"></span>
-                <span
-                  className={`absolute inset-0 rounded-lg transition-all duration-300 ${
-                    isScrolled
-                      ? "bg-primary-50 opacity-0 group-hover:opacity-100"
-                      : "bg-white/10 opacity-0 group-hover:opacity-100"
-                  }`}
-                ></span>
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
 
           {/* CTA Button */}
-          <div
-            className="hidden md:block animate-fade-in"
-            style={{ animationDelay: "0.6s" }}
-          >
-            <button
-              className={`btn-modern px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-500 hover-lift shadow-glow-hover ${
-                isScrolled
-                  ? "btn-primary"
-                  : "bg-white text-primary-700 hover:bg-primary-50 shadow-soft"
-              }`}
-            >
-              <span>Get Started</span>
+          <div className="hidden md:block">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 shadow-md hover:shadow-lg">
+              Get Started
             </button>
           </div>
 
@@ -93,11 +77,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-all duration-300 hover-scale ${
-                isScrolled
-                  ? "text-text-secondary hover:bg-background-secondary"
-                  : "text-white hover:bg-white/10"
-              }`}
+              className="p-2 text-gray-700 hover:text-purple-600 transition-colors duration-200"
             >
               {isMenuOpen ? (
                 <X className="w-5 h-5" />
@@ -110,23 +90,18 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-500 ease-in-out ${
+          className={`md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
               ? "max-h-64 opacity-100 visible"
               : "max-h-0 opacity-0 invisible"
           }`}
         >
-          <div className="py-3 space-y-1 border-t border-white/20">
-            {navigation.map((item, index) => (
+          <div className="py-3 space-y-1 border-t border-gray-200">
+            {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`nav-link block px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 animate-slide-up ${
-                  isScrolled
-                    ? "text-text-secondary hover:bg-background-secondary"
-                    : "text-white hover:bg-white/10"
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -144,111 +119,170 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 overflow-hidden"
+      className="relative min-h-screen flex items-center bg-gradient-to-br from-white via-purple-50 to-white overflow-hidden"
     >
-      {/* Enhanced Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-float-fast"></div>
-        <div className="absolute bottom-40 left-20 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
 
-        {/* Geometric Shapes */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-white/20 rounded-full animate-rotate-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 border border-primary-300/30 rotate-45 animate-rotate-fast"></div>
-        <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-white/10 rounded-full animate-bounce-subtle"></div>
-
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
         {/* Floating Particles */}
-        <div className="absolute top-20 right-20 w-4 h-4 bg-primary-400 rounded-full animate-float"></div>
         <div
-          className="absolute top-40 left-32 w-3 h-3 bg-white/50 rounded-full animate-float"
-          style={{ animationDelay: "1s" }}
+          className="absolute top-20 left-20 w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+          style={{ animationDuration: "3s" }}
         ></div>
         <div
-          className="absolute bottom-32 right-32 w-2 h-2 bg-primary-300 rounded-full animate-float"
-          style={{ animationDelay: "2s" }}
+          className="absolute top-40 right-32 w-3 h-3 bg-purple-300 rounded-full animate-pulse"
+          style={{ animationDuration: "4s", animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-40 w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse"
+          style={{ animationDuration: "5s", animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-20 w-2.5 h-2.5 bg-purple-200 rounded-full animate-pulse"
+          style={{ animationDuration: "3.5s", animationDelay: "0.5s" }}
+        ></div>
+
+        {/* Floating Geometric Shapes */}
+        <div
+          className="absolute top-1/4 left-1/3 w-4 h-4 border border-purple-300 rounded-full animate-spin"
+          style={{ animationDuration: "20s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-1/3 w-6 h-6 border border-purple-200 rotate-45 animate-spin"
+          style={{ animationDuration: "25s", animationDirection: "reverse" }}
+        ></div>
+
+        {/* Gradient Orbs */}
+        <div
+          className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-purple-200 to-purple-300 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "8s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-purple-100 to-purple-200 rounded-full opacity-30 animate-pulse"
+          style={{ animationDuration: "10s", animationDelay: "2s" }}
         ></div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        {/* Enhanced Badge */}
-        <div className="inline-flex items-center px-4 py-2 glass border border-white/20 rounded-full mb-6 animate-bounce-in shadow-glow">
-          <span className="w-2 h-2 bg-primary-300 rounded-full mr-2 animate-pulse"></span>
-          <span className="text-primary-100 text-sm font-medium">
-            AI-Powered Solutions
-          </span>
-        </div>
-
-        {/* Main Heading */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-scale-in">
-          Your Trusted{" "}
-          <span className="text-gradient bg-gradient-to-r from-primary-300 to-white animate-shimmer bg-clip-text text-transparent">
-            AI Development
-          </span>{" "}
-          Company
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          className="text-lg sm:text-xl text-primary-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in text-balance"
-          style={{ animationDelay: "0.3s" }}
-        >
-          We build meaningful{" "}
-          <span className="text-white font-semibold">
-            AI-powered software solutions
-          </span>{" "}
-          to shape the future of your business
-        </p>
-
-        {/* Enhanced CTA Buttons */}
-        <div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-up"
-          style={{ animationDelay: "0.5s" }}
-        >
-          <button className="btn-modern bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-3 rounded-xl font-semibold shadow-purple-glow hover-lift hover-glow">
-            <span>Get Started Today</span>
-          </button>
-          <button className="btn-modern glass border border-white/20 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300">
-            <span>Learn More</span>
-          </button>
-        </div>
-
-        {/* Enhanced Stats */}
-        <div
-          className="grid grid-cols-3 gap-6 max-w-lg mx-auto animate-fade-in"
-          style={{ animationDelay: "0.7s" }}
-        >
-          <div className="text-center group hover-scale">
-            <div className="text-2xl font-bold text-primary-300 mb-1 animate-glow">
-              10+
-            </div>
-            <div className="text-primary-200 text-xs">Years Experience</div>
-          </div>
-          <div className="text-center group hover-scale">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-8">
+            {/* Badge */}
             <div
-              className="text-2xl font-bold text-primary-300 mb-1 animate-glow"
-              style={{ animationDelay: "0.5s" }}
+              className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full animate-bounce"
+              style={{ animationDuration: "2s" }}
             >
-              200+
+              <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+              <span className="text-purple-700 text-sm font-medium">
+                AI-Powered Solutions
+              </span>
             </div>
-            <div className="text-primary-200 text-xs">Happy Clients</div>
-          </div>
-          <div className="text-center group hover-scale">
-            <div
-              className="text-2xl font-bold text-primary-300 mb-1 animate-glow"
-              style={{ animationDelay: "1s" }}
-            >
-              170+
-            </div>
-            <div className="text-primary-200 text-xs">Projects Done</div>
-          </div>
-        </div>
-      </div>
 
-      {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-subtle">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center hover-scale cursor-pointer">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight animate-fade-in">
+              Your Trusted{" "}
+              <span className="text-purple-600 animate-pulse">
+                AI Development
+              </span>{" "}
+              Company
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-xl text-gray-600 leading-relaxed max-w-2xl animate-fade-in"
+              style={{ animationDelay: "0.3s" }}
+            >
+              We build meaningful{" "}
+              <span className="text-gray-900 font-semibold">
+                AI-powered software solutions
+              </span>{" "}
+              to shape the future of your business
+            </p>
+
+            {/* CTA Buttons */}
+            <div
+              className="flex flex-col sm:flex-row gap-4 animate-fade-in"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center">
+                <span>Get Started Today</span>
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </button>
+              <button className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center hover:-translate-y-1">
+                <Play className="mr-2 w-5 h-5" />
+                <span>Watch Demo</span>
+              </button>
+            </div>
+
+            {/* Stats */}
+            <div
+              className="grid grid-cols-3 gap-8 pt-8 animate-fade-in"
+              style={{ animationDelay: "0.9s" }}
+            >
+              <div className="text-center group hover:scale-105 transition-transform duration-200">
+                <div className="text-3xl font-bold text-purple-600 mb-2 animate-pulse">
+                  10+
+                </div>
+                <div className="text-gray-600 text-sm">Years Experience</div>
+              </div>
+              <div className="text-center group hover:scale-105 transition-transform duration-200">
+                <div
+                  className="text-3xl font-bold text-purple-600 mb-2 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                >
+                  200+
+                </div>
+                <div className="text-gray-600 text-sm">Happy Clients</div>
+              </div>
+              <div className="text-center group hover:scale-105 transition-transform duration-200">
+                <div
+                  className="text-3xl font-bold text-purple-600 mb-2 animate-pulse"
+                  style={{ animationDelay: "1s" }}
+                >
+                  170+
+                </div>
+                <div className="text-gray-600 text-sm">Projects Done</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div
+            className="relative animate-fade-in"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div className="relative z-10">
+              <img
+                src="/assets/images/hero-main.png"
+                alt="AI Development"
+                className="w-full h-auto rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            {/* Floating Card */}
+            <div
+              className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 animate-bounce"
+              style={{ animationDuration: "3s" }}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-purple-600" />
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900">AI-Powered</div>
+                  <div className="text-sm text-gray-600">Smart Solutions</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -258,162 +292,113 @@ const Hero = () => {
 // About Section
 const About = () => {
   return (
-    <section id="about" className="py-16 bg-white relative overflow-hidden">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-100/50 rounded-full blur-3xl animate-float-fast"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-primary-100/20 rounded-full blur-2xl animate-pulse-slow"></div>
+    <section id="about" className="py-20 bg-white relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
+
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "12s" }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-30 animate-pulse"
+          style={{ animationDuration: "15s", animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "18s", animationDelay: "1s" }}
+        ></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-6 animate-slide-left">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full shadow-glow animate-bounce-in">
-              <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-              <span className="text-white text-sm font-medium">About Us</span>
-            </div>
-
-            <h2 className="text-3xl lg:text-4xl font-bold text-text-primary leading-tight animate-fade-in">
-              Drive{" "}
-              <span className="text-gradient-primary animate-shimmer">
-                Unstoppable
-              </span>{" "}
-              Business Success
-            </h2>
-
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Image */}
+          <div className="relative animate-fade-in">
+            <img
+              src="/assets/images/hero-img.png"
+              alt="About Us"
+              className="w-full h-auto rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500"
+            />
+            {/* Stats Card */}
             <div
-              className="space-y-4 text-text-secondary leading-relaxed animate-slide-up"
-              style={{ animationDelay: "0.3s" }}
+              className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 animate-bounce"
+              style={{ animationDuration: "4s", animationDelay: "1s" }}
             >
-              <p className="hover:text-text-primary transition-colors duration-300">
-                In today's rapidly evolving digital landscape,{" "}
-                <span className="text-text-primary font-semibold">
-                  artificial intelligence
-                </span>{" "}
-                has become the cornerstone of business innovation.
-              </p>
-              <p className="hover:text-text-primary transition-colors duration-300">
-                We combine{" "}
-                <span className="text-text-primary font-semibold">
-                  cutting-edge AI technologies
-                </span>{" "}
-                with deep industry expertise to deliver solutions that
-                anticipate future challenges.
-              </p>
-            </div>
-
-            {/* Enhanced CTA Buttons */}
-            <div
-              className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in"
-              style={{ animationDelay: "0.5s" }}
-            >
-              <button className="btn-primary hover-lift shadow-glow-hover">
-                Get Started
-              </button>
-              <button className="btn-secondary hover-lift">Learn More</button>
-            </div>
-
-            {/* Enhanced Stats */}
-            <div
-              className="grid grid-cols-3 gap-6 pt-6 animate-slide-up"
-              style={{ animationDelay: "0.7s" }}
-            >
-              <div className="text-center group hover-scale transition-all duration-500">
-                <div className="text-2xl font-bold text-gradient-primary mb-1 group-hover:animate-glow">
-                  40%
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600 mb-1 animate-pulse">
+                  99%
                 </div>
-                <div className="text-xs text-text-tertiary font-medium group-hover:text-text-primary transition-colors duration-300">
-                  Improved Efficiency
-                </div>
-              </div>
-              <div className="text-center group hover-scale transition-all duration-500">
-                <div className="text-2xl font-bold text-gradient-primary mb-1 group-hover:animate-glow">
-                  60%
-                </div>
-                <div className="text-xs text-text-tertiary font-medium group-hover:text-text-primary transition-colors duration-300">
-                  Revenue Growth
-                </div>
-              </div>
-              <div className="text-center group hover-scale transition-all duration-500">
-                <div className="text-2xl font-bold text-gradient-primary mb-1 group-hover:animate-glow">
-                  10x
-                </div>
-                <div className="text-xs text-text-tertiary font-medium group-hover:text-text-primary transition-colors duration-300">
-                  Faster Processing
-                </div>
+                <div className="text-sm text-gray-600">Client Satisfaction</div>
               </div>
             </div>
           </div>
 
-          {/* Enhanced Visual Content */}
-          <div className="relative animate-slide-right">
-            <div className="card-modern bg-white p-8 rounded-2xl shadow-strong border border-border-light relative overflow-hidden hover-lift group">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-50/50 to-primary-100/30 rounded-2xl group-hover:opacity-80 transition-opacity duration-500"></div>
-
-              {/* Floating Elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-primary-600/10 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-primary-600/10 to-primary-700/10 rounded-full blur-xl group-hover:scale-110 transition-transform duration-700"></div>
-
-              <div className="relative z-10 text-center">
-                {/* Enhanced AI Icon */}
-                <div className="w-24 h-24 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-purple-glow group-hover:shadow-glow group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 animate-float">
-                  <span className="text-4xl group-hover:scale-125 transition-transform duration-300">
-                    🤖
-                  </span>
-                </div>
-
-                {/* Enhanced Data Visualization */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3 group/item">
-                    <div className="w-12 h-1.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full group-hover/item:scale-x-110 transition-transform duration-300 animate-shimmer"></div>
-                    <span className="text-xs text-text-tertiary font-medium group-hover/item:text-text-primary transition-colors duration-300">
-                      AI Processing
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3 group/item">
-                    <div
-                      className="w-16 h-1.5 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full group-hover/item:scale-x-110 transition-transform duration-300 animate-shimmer"
-                      style={{ animationDelay: "0.5s" }}
-                    ></div>
-                    <span className="text-xs text-text-tertiary font-medium group-hover/item:text-text-primary transition-colors duration-300">
-                      Machine Learning
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3 group/item">
-                    <div
-                      className="w-10 h-1.5 bg-gradient-to-r from-primary-700 to-primary-800 rounded-full group-hover/item:scale-x-110 transition-transform duration-300 animate-shimmer"
-                      style={{ animationDelay: "1s" }}
-                    ></div>
-                    <span className="text-xs text-text-tertiary font-medium group-hover/item:text-text-primary transition-colors duration-300">
-                      Data Analytics
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3 group/item">
-                    <div
-                      className="w-20 h-1.5 bg-gradient-to-r from-primary-500 to-primary-700 rounded-full group-hover/item:scale-x-110 transition-transform duration-300 animate-shimmer"
-                      style={{ animationDelay: "1.5s" }}
-                    ></div>
-                    <span className="text-xs text-text-tertiary font-medium group-hover/item:text-text-primary transition-colors duration-300">
-                      Predictive Models
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-text-tertiary text-sm leading-relaxed group-hover:text-text-primary transition-colors duration-300">
-                  Transform your business with intelligent AI solutions
-                </p>
-              </div>
-
-              {/* Decorative Shapes */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-20 animate-bounce group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div
-                className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full opacity-20 animate-bounce group-hover:opacity-40 transition-opacity duration-500"
-                style={{ animationDelay: "1s" }}
-              ></div>
+          {/* Right Content */}
+          <div
+            className="space-y-6 animate-fade-in"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full">
+              <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+              <span className="text-purple-700 text-sm font-medium">
+                About Us
+              </span>
             </div>
+
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+              Drive <span className="text-purple-600">Unstoppable</span>{" "}
+              Business Success
+            </h2>
+
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                In today's rapidly evolving digital landscape,{" "}
+                <span className="text-gray-900 font-semibold">
+                  artificial intelligence
+                </span>{" "}
+                has become the cornerstone of business innovation.
+              </p>
+              <p>
+                We combine{" "}
+                <span className="text-gray-900 font-semibold">
+                  cutting-edge AI technologies
+                </span>{" "}
+                with deep industry expertise to deliver solutions that drive
+                real business value.
+              </p>
+            </div>
+
+            {/* Features List */}
+            <div className="space-y-3">
+              {[
+                "Advanced Machine Learning Solutions",
+                "Custom AI Development",
+                "24/7 Technical Support",
+                "Scalable Architecture Design",
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-center space-x-3 animate-fade-in"
+                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                >
+                  <CheckCircle className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                  <span className="text-gray-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-1">
+              Learn More About Us
+            </button>
           </div>
         </div>
       </div>
@@ -448,6 +433,162 @@ const Services = () => {
         "Scalable Infrastructure",
         "Real-time Decisions",
       ],
+      icon: "🤖",
+      features: [
+        "Machine Learning",
+        "Deep Learning",
+        "NLP",
+        "Computer Vision",
+        "Predictive Analytics",
+        "AI Chatbots",
+      ],
+    },
+    "AI/ML Development": {
+      description:
+        "Advanced machine learning solutions that learn from your data to provide predictive insights and automated decision-making capabilities.",
+      benefits: [
+        "Predictive Analytics",
+        "Pattern Recognition",
+        "Automated Learning",
+        "Scalable Models",
+        "Real-time Processing",
+        "Continuous Improvement",
+      ],
+      icon: "🧠",
+      features: [
+        "Neural Networks",
+        "Deep Learning",
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Reinforcement Learning",
+        "Model Optimization",
+      ],
+    },
+    "Chatbot Integration": {
+      description:
+        "Intelligent chatbot solutions that provide 24/7 customer support and enhance user engagement through natural language processing.",
+      benefits: [
+        "24/7 Availability",
+        "Instant Responses",
+        "Multi-language Support",
+        "Seamless Integration",
+        "Analytics & Insights",
+        "Cost Reduction",
+      ],
+      icon: "💬",
+      features: [
+        "NLP Processing",
+        "Intent Recognition",
+        "Multi-platform Support",
+        "Custom Responses",
+        "Analytics Dashboard",
+        "API Integration",
+      ],
+    },
+    "Machine Learning": {
+      description:
+        "Custom machine learning models that analyze complex data patterns to deliver actionable business intelligence and automation.",
+      benefits: [
+        "Data Pattern Recognition",
+        "Automated Decision Making",
+        "Predictive Modeling",
+        "Process Optimization",
+        "Risk Assessment",
+        "Performance Monitoring",
+      ],
+      icon: "🔬",
+      features: [
+        "Classification Models",
+        "Regression Analysis",
+        "Clustering Algorithms",
+        "Feature Engineering",
+        "Model Training",
+        "Performance Metrics",
+      ],
+    },
+    "Computer Vision": {
+      description:
+        "Advanced computer vision solutions that enable machines to interpret and understand visual information for automation and analysis.",
+      benefits: [
+        "Image Recognition",
+        "Object Detection",
+        "Quality Control",
+        "Security Monitoring",
+        "Process Automation",
+        "Visual Analytics",
+      ],
+      icon: "👁️",
+      features: [
+        "Image Processing",
+        "Object Detection",
+        "Facial Recognition",
+        "Video Analysis",
+        "OCR Technology",
+        "3D Vision",
+      ],
+    },
+    "Big Data Analytics": {
+      description:
+        "Comprehensive big data solutions that process and analyze large datasets to uncover valuable business insights and trends.",
+      benefits: [
+        "Data Processing",
+        "Real-time Analytics",
+        "Business Intelligence",
+        "Trend Analysis",
+        "Performance Metrics",
+        "Strategic Insights",
+      ],
+      icon: "📊",
+      features: [
+        "Data Processing",
+        "Real-time Analytics",
+        "Business Intelligence",
+        "Trend Analysis",
+        "Performance Metrics",
+        "Strategic Insights",
+      ],
+    },
+    "Custom Software": {
+      description:
+        "Tailored software solutions designed specifically for your business needs, ensuring optimal performance and user experience.",
+      benefits: [
+        "Custom Functionality",
+        "Scalable Architecture",
+        "User Experience",
+        "Integration Capabilities",
+        "Maintenance Support",
+        "Future-Proof Design",
+      ],
+      icon: "💻",
+      features: [
+        "Web Applications",
+        "Desktop Software",
+        "API Development",
+        "Database Design",
+        "Cloud Solutions",
+        "Mobile Apps",
+      ],
+    },
+    "UI/UX Design": {
+      description:
+        "User-centered design solutions that create intuitive, engaging, and accessible user experiences across all platforms.",
+      benefits: [
+        "User Experience",
+        "Accessibility",
+        "Brand Consistency",
+        "User Engagement",
+        "Conversion Optimization",
+        "Cross-platform Design",
+      ],
+      icon: "🎨",
+      features: [
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "Visual Design",
+        "Usability Testing",
+        "Design Systems",
+      ],
     },
   };
 
@@ -457,28 +598,33 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="py-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
     >
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-100/50 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl animate-float-fast"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-primary-100/20 rounded-full blur-2xl animate-pulse-slow"></div>
-
-        {/* Geometric Shapes */}
-        <div className="absolute top-20 right-20 w-16 h-16 border-2 border-primary-300/40 rounded-full animate-rotate-slow"></div>
-        <div className="absolute top-40 left-32 w-12 h-12 border-2 border-primary-400/40 rotate-45 animate-rotate-fast"></div>
+        <div
+          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "20s" }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-30 animate-pulse"
+          style={{ animationDuration: "25s", animationDelay: "5s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "18s", animationDelay: "1s" }}
+        ></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full mb-6 shadow-glow animate-bounce-in">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full mb-6 shadow-glow animate-bounce-in">
             <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
             <span className="text-white text-sm font-medium">Our Services</span>
           </div>
 
-          <h2 className="text-3xl lg:text-4xl font-bold text-text-primary mb-4 animate-scale-in">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 animate-scale-in">
             Services{" "}
             <span className="text-gradient-primary animate-shimmer">
               We Offer
@@ -486,40 +632,35 @@ const Services = () => {
           </h2>
 
           <p
-            className="text-text-secondary max-w-2xl mx-auto animate-slide-up"
+            className="text-gray-600 max-w-2xl mx-auto animate-slide-up"
             style={{ animationDelay: "0.3s" }}
           >
             Comprehensive software solutions tailored to your business needs
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid lg:grid-cols-4 gap-6 items-center">
           {/* Enhanced Service Navigation */}
           <div className="lg:col-span-1 animate-slide-left">
-            <div className="card-modern bg-white p-6 rounded-2xl shadow-strong border border-border-light sticky top-20 animate-float-slow">
-              <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center">
-                <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mr-3 animate-pulse"></span>
+            <div className="bg-white p-4 rounded-xl shadow-strong border border-gray-100 sticky top-20 animate-fade-in">
+              <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center">
+                <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mr-2 animate-pulse"></span>
                 Our Services
               </h3>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 {services.map((service, index) => (
                   <button
                     key={service.name}
                     onClick={() => setSelectedService(service.name)}
-                    className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition-all duration-500 group animate-fade-in hover-lift ${
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all duration-500 group animate-fade-in hover-lift ${
                       selectedService === service.name
-                        ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-glow scale-105"
-                        : "text-text-tertiary hover:bg-primary-50 hover:text-primary-700 hover-scale"
+                        ? "bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-glow scale-105"
+                        : "text-gray-600 hover:bg-purple-50 hover:text-purple-700 hover-scale"
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-base group-hover:scale-125 transition-transform duration-300">
-                        {service.icon}
-                      </span>
-                      <span className="text-xs">{service.name}</span>
-                    </div>
+                    {service.name}
                   </button>
                 ))}
               </div>
@@ -528,22 +669,17 @@ const Services = () => {
 
           {/* Enhanced Service Details */}
           <div className="lg:col-span-3 animate-slide-right">
-            <div className="card-modern bg-white p-8 rounded-2xl shadow-strong border border-border-light hover-lift">
-              <div className="mb-8">
-                <div className="flex items-center space-x-4 mb-6 animate-fade-in">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center text-2xl shadow-purple-glow hover-glow hover-scale transition-all duration-500 animate-float">
-                    🤖
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-text-primary mb-2">
-                      {selectedService}
-                    </h3>
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full animate-shimmer"></div>
-                  </div>
+            <div className="bg-white p-6 rounded-xl shadow-strong border border-gray-100 hover-lift">
+              <div className="mb-6">
+                <div className="mb-4 animate-fade-in">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {selectedService}
+                  </h3>
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full animate-shimmer"></div>
                 </div>
 
                 <p
-                  className="text-text-secondary leading-relaxed animate-slide-up"
+                  className="text-gray-600 leading-relaxed animate-slide-up text-sm"
                   style={{ animationDelay: "0.2s" }}
                 >
                   {currentService.description}
@@ -551,21 +687,43 @@ const Services = () => {
               </div>
 
               {/* Enhanced Benefits */}
-              <div className="mb-8">
-                <h4 className="text-lg font-bold text-text-primary mb-4 flex items-center animate-fade-in">
-                  <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mr-3 animate-pulse"></span>
+              <div className="mb-6">
+                <h4 className="text-base font-bold text-gray-900 mb-3 flex items-center animate-fade-in">
+                  <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mr-2 animate-pulse"></span>
                   Key Benefits
                 </h4>
-                <div className="grid sm:grid-cols-2 gap-3">
+                <div className="grid sm:grid-cols-2 gap-2">
                   {currentService.benefits.map((benefit, index) => (
                     <div
                       key={index}
-                      className="flex items-center space-x-2 p-3 rounded-xl bg-primary-50 border border-primary-100 hover:shadow-medium hover-lift transition-all duration-500 group animate-fade-in"
+                      className="flex items-center space-x-2 p-2 rounded-lg bg-purple-50 border border-purple-100 hover:shadow-medium hover-lift transition-all duration-500 group animate-fade-in"
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <div className="w-2 h-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
-                      <span className="text-text-secondary text-sm font-medium group-hover:text-text-primary transition-colors duration-300">
+                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                      <span className="text-gray-700 text-xs font-medium group-hover:text-purple-700 transition-colors duration-300">
                         {benefit}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Features Section */}
+              <div className="mb-6">
+                <h4 className="text-base font-bold text-gray-900 mb-3 flex items-center animate-fade-in">
+                  <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mr-2 animate-pulse"></span>
+                  Core Features
+                </h4>
+                <div className="grid sm:grid-cols-2 gap-2">
+                  {currentService.features.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-2 p-2 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-medium hover-lift transition-all duration-500 group animate-fade-in"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <CheckCircle className="w-3 h-3 text-purple-600 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="text-gray-700 text-xs font-medium group-hover:text-purple-700 transition-colors duration-300">
+                        {feature}
                       </span>
                     </div>
                   ))}
@@ -576,7 +734,7 @@ const Services = () => {
                 className="flex justify-end animate-fade-in"
                 style={{ animationDelay: "0.5s" }}
               >
-                <button className="btn-primary hover-lift shadow-glow-hover animate-bounce-in">
+                <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-5 py-2 rounded-lg font-semibold transition-all duration-200 shadow-glow hover:shadow-purple-glow hover-lift text-sm">
                   Get Started
                 </button>
               </div>
@@ -588,534 +746,550 @@ const Services = () => {
   );
 };
 
-// Testimonials Section
-const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const testimonials = [
+// Portfolio Section
+const Portfolio = () => {
+  const projects = [
     {
-      name: "Sarah Johnson",
-      title: "CTO",
-      company: "HealthTech Solutions",
-      content:
-        "SoftwareHouse transformed our healthcare operations with their AI-powered system. The results exceeded our expectations.",
-      rating: 5,
-      image: "👩‍⚕️",
+      title: "AI-Powered Analytics Platform",
+      category: "AI Development",
+      image: "/assets/images/post1.png",
+      description:
+        "Advanced analytics platform with machine learning capabilities",
     },
     {
-      name: "Michael Chen",
-      title: "CEO",
-      company: "InnovateCorp",
-      content:
-        "Working with SoftwareHouse was a game-changer for our business. Their AI solutions helped us automate complex processes.",
-      rating: 5,
-      image: "👨‍💼",
+      title: "E-commerce Mobile App",
+      category: "Mobile Development",
+      image: "/assets/images/postsecond.png",
+      description: "Cross-platform mobile application for online retail",
     },
     {
-      name: "Dr. Emily Rodriguez",
-      title: "Research Director",
-      company: "BioTech Research",
-      content:
-        "The AI algorithms developed by SoftwareHouse have revolutionized our research capabilities and data processing speed.",
-      rating: 5,
-      image: "👩‍🔬",
+      title: "Cloud Management Dashboard",
+      category: "Web Development",
+      image: "/assets/images/repo-preview.png",
+      description: "Comprehensive cloud infrastructure management solution",
     },
   ];
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
-
   return (
-    <section className="py-16 bg-gradient-to-r from-purple-900 to-purple-800">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            What Our Clients Say
-          </h2>
-          <p className="text-purple-100 max-w-2xl mx-auto">
-            Hear from our satisfied clients about their experience
-          </p>
-        </div>
-
-        {/* Testimonials Carousel */}
-        <div className="relative">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-200 backdrop-blur-sm"
-          >
-            <ChevronLeft className="w-5 h-5 text-white" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-200 backdrop-blur-sm"
-          >
-            <ChevronRight className="w-5 h-5 text-white" />
-          </button>
-
-          {/* Testimonials Display */}
-          <div className="flex justify-center">
-            <div className="max-w-3xl">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={`transform transition-all duration-500 ${
-                    index === currentIndex ? "block" : "hidden"
-                  }`}
-                >
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    {/* Rating */}
-                    <div className="flex justify-center mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 text-yellow-400 fill-current"
-                        />
-                      ))}
-                    </div>
-
-                    {/* Quote */}
-                    <blockquote className="text-white text-lg leading-relaxed mb-6 text-center">
-                      "{testimonial.content}"
-                    </blockquote>
-
-                    {/* Author */}
-                    <div className="flex items-center justify-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center">
-                        <span className="text-lg">{testimonial.image}</span>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-white font-semibold text-sm">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-purple-200 text-xs">
-                          {testimonial.title} at {testimonial.company}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Carousel Indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  index === currentIndex
-                    ? "bg-purple-400 w-6"
-                    : "bg-white/30 hover:bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
+    <section id="portfolio" className="py-20 bg-white relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
       </div>
-    </section>
-  );
-};
 
-// Enhanced Why Choose Us Section
-const WhyChooseUs = () => {
-  const metrics = [
-    { number: "10+", label: "Years Experience", icon: "⏰" },
-    { number: "170+", label: "Happy Clients", icon: "😊" },
-    { number: "200+", label: "Projects Done", icon: "🚀" },
-    { number: "04", label: "Global Offices", icon: "🌍" },
-  ];
-
-  const clientLogos = [
-    { name: "Maersk", logo: "M" },
-    { name: "Google", logo: "G" },
-    { name: "KIA", logo: "KIA" },
-    { name: "INNOVA", logo: "INNOVA" },
-    { name: "Xfinity", logo: "X" },
-    { name: "LIQUID", logo: "LIQUID" },
-  ];
-
-  return (
-    <section className="py-16 bg-gradient-to-br from-white to-primary-50 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100/40 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl animate-float-fast"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-primary-100/20 rounded-full blur-2xl animate-pulse-slow"></div>
-
-        {/* Geometric Shapes */}
-        <div className="absolute top-20 left-20 w-16 h-16 border-2 border-primary-300/50 rounded-full animate-rotate-slow"></div>
-        <div className="absolute top-40 right-32 w-12 h-12 border-2 border-primary-400/50 rotate-45 animate-rotate-fast"></div>
-        <div className="absolute bottom-32 left-32 w-20 h-20 border-2 border-primary-300/50 rounded-full animate-rotate-slow"></div>
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-1/4 left-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "22s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-20 w-72 h-72 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "28s", animationDelay: "4s" }}
+        ></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full mb-6 shadow-glow animate-bounce-in">
-            <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-            <span className="text-white text-sm font-medium">
-              Why Choose Us
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full mb-6">
+            <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+            <span className="text-purple-700 text-sm font-medium">
+              Our Work
             </span>
           </div>
-
-          <h2 className="text-3xl lg:text-4xl font-bold text-text-primary mb-6 animate-scale-in">
-            Why Choose{" "}
-            <span className="text-gradient-primary animate-shimmer">
-              SoftwareHouse
-            </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Featured <span className="text-purple-600">Projects</span>
           </h2>
-
-          <p
-            className="text-text-secondary max-w-2xl mx-auto animate-slide-up"
-            style={{ animationDelay: "0.3s" }}
-          >
-            Your trusted partner for innovative software solutions
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover how we've helped businesses transform through innovative
+            technology solutions
           </p>
         </div>
 
-        {/* Enhanced Metrics Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {metrics.map((metric, index) => (
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
             <div
               key={index}
-              className="text-center group hover-lift transition-all duration-500 animate-fade-in"
+              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in group"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <div className="relative mb-4">
-                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center shadow-purple-glow group-hover:shadow-glow group-hover:scale-110 transition-all duration-500 animate-float">
-                  <span className="text-2xl group-hover:scale-125 transition-transform duration-500">
-                    {metric.icon}
+              <div className="relative">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                    {project.category}
                   </span>
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-bounce">
-                  {index + 1}
-                </div>
               </div>
-              <div className="text-3xl font-bold text-gradient-primary mb-1 group-hover:animate-glow">
-                {metric.number}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{project.description}</p>
+                <button className="text-purple-600 hover:text-purple-700 font-semibold flex items-center space-x-2 transition-colors duration-200 hover:translate-x-1">
+                  <span>View Project</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
-              <p className="text-text-secondary text-sm font-medium group-hover:text-primary-600 transition-colors duration-300">
-                {metric.label}
-              </p>
             </div>
           ))}
-        </div>
-
-        {/* Enhanced Client Logos Section */}
-        <div className="card-modern bg-white rounded-2xl p-8 shadow-strong border border-border-light relative overflow-hidden animate-slide-up">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-50/50 to-primary-100/30"></div>
-
-          <div className="relative z-10 text-center mb-8 animate-fade-in">
-            <h3 className="text-2xl font-bold text-text-primary mb-2">
-              Trusted by{" "}
-              <span className="text-gradient-primary animate-shimmer">
-                Industry Leaders
-              </span>
-            </h3>
-            <p className="text-text-secondary text-sm">
-              We've helped companies of all sizes achieve their digital goals
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 items-center">
-            {clientLogos.map((client, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center space-y-2 group cursor-pointer hover-lift transition-all duration-500 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-medium group-hover:shadow-glow group-hover:rotate-12 transition-all duration-500 border-2 border-white/20 animate-float">
-                    <span className="text-white font-bold text-sm group-hover:scale-125 transition-transform duration-300">
-                      {client.logo}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm"></div>
-                </div>
-                <span className="text-text-tertiary text-xs text-center font-medium group-hover:text-primary-600 transition-colors duration-300">
-                  {client.name}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
   );
 };
 
-// Enhanced Blog Section
-const BlogSection = () => {
-  const featuredPost = {
-    title: "How to Develop an AI Voice - An Ultimate Guide",
-    date: "Jan 1, 2023",
-    summary:
-      "Discover the comprehensive guide to developing AI voice systems, from natural language processing to voice synthesis.",
-    image: "🧠",
-    readTime: "8 min",
-  };
+// Testimonials Section
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "CEO, TechCorp",
+      content:
+        "SoftwareHouse delivered an exceptional AI solution that transformed our business operations. Their expertise and professionalism exceeded our expectations.",
+      rating: 5,
+    },
+    {
+      name: "Michael Chen",
+      role: "CTO, InnovateLab",
+      content:
+        "The team at SoftwareHouse is incredibly skilled and responsive. They built a robust platform that scales perfectly with our growing needs.",
+      rating: 5,
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Product Manager, DataFlow",
+      content:
+        "Working with SoftwareHouse was a game-changer for our company. Their AI solutions gave us a competitive edge in the market.",
+      rating: 5,
+    },
+  ];
 
-  const recentPosts = [
+  return (
+    <section className="py-20 bg-gray-50 relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
+
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "30s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "35s", animationDelay: "7s" }}
+        ></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full mb-6">
+            <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+            <span className="text-purple-700 text-sm font-medium">
+              Testimonials
+            </span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            What Our <span className="text-purple-600">Clients Say</span>
+          </h2>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in group"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="flex items-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-5 h-5 text-yellow-400 fill-current group-hover:scale-110 transition-transform duration-200"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  />
+                ))}
+              </div>
+              <p className="text-gray-600 mb-6 italic">
+                "{testimonial.content}"
+              </p>
+              <div>
+                <div className="font-semibold text-gray-900">
+                  {testimonial.name}
+                </div>
+                <div className="text-sm text-gray-600">{testimonial.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Blog Section
+const BlogSection = () => {
+  const blogPosts = [
+    {
+      title: "How to Develop an AI Voice - An Ultimate Guide",
+      date: "Jan 1, 2024",
+      summary:
+        "Discover the comprehensive guide to developing AI voice systems, from natural language processing to voice synthesis.",
+      image: "🧠",
+      readTime: "8 min",
+      category: "AI Development",
+    },
     {
       title: "The Future of AI in Healthcare",
       date: "Dec 15, 2023",
-      summary: "Explore emerging trends in AI healthcare applications.",
+      summary:
+        "Explore emerging trends in AI healthcare applications and how they're transforming patient care.",
       image: "🏥",
       readTime: "6 min",
+      category: "Healthcare AI",
     },
     {
       title: "Machine Learning vs Deep Learning",
       date: "Dec 10, 2023",
-      summary: "Understand the fundamental differences between ML and DL.",
+      summary:
+        "Understand the fundamental differences between machine learning and deep learning approaches.",
       image: "🤖",
       readTime: "5 min",
+      category: "Machine Learning",
     },
     {
       title: "Building Scalable AI Infrastructure",
       date: "Dec 5, 2023",
-      summary: "Essential best practices for scalable AI infrastructure.",
+      summary:
+        "Essential best practices for building scalable and robust AI infrastructure for enterprise applications.",
       image: "⚡",
       readTime: "7 min",
+      category: "AI Infrastructure",
     },
   ];
 
   return (
     <section id="blog" className="py-16 bg-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-100/50 rounded-full blur-3xl animate-float-fast"></div>
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
+
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-1/4 left-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "22s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-20 w-72 h-72 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "28s", animationDelay: "4s" }}
+        ></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
+        {/* Section Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full mb-6 shadow-glow animate-bounce-in">
-            <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-            <span className="text-white text-sm font-medium">Our Blog</span>
-          </div>
-
-          <h2 className="text-3xl lg:text-4xl font-bold text-text-primary mb-4 animate-scale-in">
-            Latest{" "}
-            <span className="text-gradient-primary animate-shimmer">
-              Insights
+          <div className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full mb-4">
+            <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+            <span className="text-purple-700 text-sm font-medium">
+              Our Blog
             </span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Latest <span className="text-purple-600">Insights</span>
           </h2>
-          <p
-            className="text-text-secondary max-w-2xl mx-auto animate-slide-up"
-            style={{ animationDelay: "0.3s" }}
-          >
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Stay updated with the latest insights and trends in AI technology
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Enhanced Featured Blog Post */}
-          <div className="lg:col-span-2 animate-slide-left">
-            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 border border-primary-200 hover-lift transition-all duration-500 group">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-glow group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 animate-float">
-                    <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
-                      {featuredPost.image}
+        {/* Blog Posts Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {blogPosts.map((post, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-medium border border-gray-100 overflow-hidden hover-lift group transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="p-6">
+                <div className="mb-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <span className="text-xs text-gray-600">{post.date}</span>
+                    <span className="text-xs text-purple-600 font-medium bg-purple-100 px-2 py-1 rounded-full">
+                      {post.readTime}
                     </span>
                   </div>
+                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    {post.category}
+                  </span>
                 </div>
 
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2 animate-fade-in">
-                    <span className="text-xs text-text-tertiary">
-                      {featuredPost.date}
-                    </span>
-                    <span className="text-xs text-primary-600 font-medium badge-primary">
-                      {featuredPost.readTime}
-                    </span>
-                  </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight group-hover:text-purple-700 transition-colors duration-300">
+                  {post.title}
+                </h3>
 
-                  <h3 className="text-xl font-bold text-text-primary mb-3 leading-tight group-hover:text-primary-700 transition-colors duration-300 animate-slide-up">
-                    {featuredPost.title}
-                  </h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                  {post.summary}
+                </p>
 
-                  <p
-                    className="text-text-secondary text-sm leading-relaxed mb-4 group-hover:text-text-primary transition-colors duration-300 animate-fade-in"
-                    style={{ animationDelay: "0.2s" }}
-                  >
-                    {featuredPost.summary}
-                  </p>
-
-                  <button className="text-primary-600 hover:text-primary-700 font-semibold text-sm transition-all duration-300 hover:translate-x-1 transform inline-block animate-slide-right">
-                    Read More →
-                  </button>
-                </div>
+                <button className="text-purple-600 hover:text-purple-700 font-semibold text-sm transition-all duration-300 hover:translate-x-1 transform inline-block">
+                  Read More →
+                </button>
               </div>
             </div>
-          </div>
-
-          {/* Enhanced Recent Blog Posts */}
-          <div className="space-y-4 animate-slide-right">
-            <h3 className="text-lg font-semibold text-text-primary mb-4 animate-fade-in">
-              Recent Posts
-            </h3>
-
-            {recentPosts.map((post, index) => (
-              <div
-                key={index}
-                className="card-modern bg-white rounded-xl p-4 shadow-medium border border-border-light hover-lift group transition-all duration-500 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-primary-700 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-glow group-hover:scale-110 transition-all duration-300 animate-float">
-                      <span className="text-lg group-hover:scale-125 transition-transform duration-300">
-                        {post.image}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <span className="text-xs text-text-tertiary">
-                        {post.date}
-                      </span>
-                      <span className="text-xs text-primary-600 font-medium badge-primary">
-                        {post.readTime}
-                      </span>
-                    </div>
-
-                    <h4 className="text-sm font-semibold text-text-primary mb-2 leading-tight group-hover:text-primary-700 transition-colors duration-300">
-                      {post.title}
-                    </h4>
-
-                    <p className="text-text-tertiary text-xs leading-relaxed mb-2 group-hover:text-text-secondary transition-colors duration-300">
-                      {post.summary}
-                    </p>
-
-                    <button className="text-primary-600 hover:text-primary-700 text-xs font-medium transition-all duration-300 hover:translate-x-1 transform inline-block">
-                      Read More →
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
 
-        {/* Enhanced Newsletter CTA */}
-        <div className="text-center mt-12 animate-slide-up">
-          <div className="bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-6 max-w-3xl mx-auto border border-primary-200 hover-lift transition-all duration-500 group">
-            <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-primary-700 transition-colors duration-300">
-              Stay Informed with Our Latest Insights
-            </h3>
-            <p className="text-text-secondary text-sm mb-4 max-w-lg mx-auto group-hover:text-text-primary transition-colors duration-300">
-              Subscribe to our newsletter and get the latest AI insights
-              delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-sm mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="form-input flex-1 px-4 py-2 border border-primary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm hover-lift transition-all duration-300"
-              />
-              <button className="btn-primary px-6 py-2 rounded-lg font-semibold text-sm whitespace-nowrap hover-lift shadow-glow-hover">
-                Subscribe
-              </button>
-            </div>
-          </div>
+        {/* View All Posts Button */}
+        <div className="text-center mt-8 animate-fade-in">
+          <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+            View All Posts
+          </button>
         </div>
       </div>
     </section>
   );
 };
 
-// Enhanced Footer Component
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+// FAQ Section
+const FAQSection = () => {
+  const [openFAQ, setOpenFAQ] = useState(0);
 
-  const footerLinks = {
-    services: [
-      "AI/ML Development",
-      "Chatbot Integration",
-      "Machine Learning",
-      "Computer Vision",
-      "Big Data",
-      "UI/UX",
-    ],
-    company: [
-      "About Us",
-      "Contact Us",
-      "Careers",
-      "Privacy Policy",
-      "Terms & Conditions",
-    ],
-  };
-
-  const socialLinks = [
-    { name: "Facebook", icon: "📘", url: "#" },
-    { name: "Twitter", icon: "🐦", url: "#" },
-    { name: "LinkedIn", icon: "💼", url: "#" },
-    { name: "Instagram", icon: "📷", url: "#" },
-    { name: "YouTube", icon: "📺", url: "#" },
+  const faqs = [
+    {
+      question: "What AI technologies do you specialize in?",
+      answer:
+        "We specialize in machine learning, deep learning, natural language processing, computer vision, and predictive analytics. Our team has extensive experience with TensorFlow, PyTorch, and custom AI solutions.",
+    },
+    {
+      question: "How long does it take to develop an AI solution?",
+      answer:
+        "Development time varies based on complexity. Simple AI integrations take 2-4 weeks, while complex custom solutions can take 3-6 months. We provide detailed timelines during project planning.",
+    },
+    {
+      question: "Do you provide ongoing support and maintenance?",
+      answer:
+        "Yes, we offer comprehensive support packages including 24/7 monitoring, regular updates, performance optimization, and technical support. We ensure your AI solutions remain cutting-edge and efficient.",
+    },
+    {
+      question: "Can you integrate AI with existing systems?",
+      answer:
+        "Absolutely! We specialize in seamless AI integration with existing infrastructure. We use APIs, microservices, and modern integration patterns to ensure compatibility and minimal disruption.",
+    },
+    {
+      question: "What industries do you serve?",
+      answer:
+        "We serve healthcare, finance, retail, manufacturing, logistics, and many other industries. Our AI solutions are tailored to specific industry requirements and compliance standards.",
+    },
+    {
+      question: "How do you ensure data security and privacy?",
+      answer:
+        "We implement enterprise-grade security measures including encryption, secure APIs, compliance with GDPR/CCPA, and regular security audits. Your data security is our top priority.",
+    },
   ];
 
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? -1 : index);
+  };
+
   return (
-    <footer className="bg-gradient-to-r from-primary-900 to-primary-800 text-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl animate-float-fast"></div>
+    <section className="py-20 bg-gray-50 relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Enhanced Company Info */}
-          <div className="lg:col-span-1 animate-fade-in">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold mb-2 text-gradient bg-gradient-to-r from-white to-primary-200 bg-clip-text">
-                SoftwareHouse
-              </h3>
-              <p className="text-primary-200 text-sm">
-                Building the future with AI technology.
-              </p>
-            </div>
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full opacity-15 animate-pulse"
+          style={{ animationDuration: "30s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full opacity-20 animate-pulse"
+          style={{ animationDuration: "35s", animationDelay: "7s" }}
+        ></div>
+      </div>
 
-            {/* Enhanced Social Media Links */}
-            <div className="flex space-x-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  className="w-8 h-8 glass rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover-scale animate-float"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  aria-label={social.name}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 bg-purple-100 border border-purple-200 rounded-full mb-6">
+            <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 animate-pulse"></span>
+            <span className="text-purple-700 text-sm font-medium">FAQ</span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Frequently Asked <span className="text-purple-600">Questions</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Get answers to common questions about our AI development services
+          </p>
+        </div>
+
+        {/* FAQ Items */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-medium border border-gray-100 overflow-hidden animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-purple-50 transition-colors duration-200"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                  {faq.question}
+                </h3>
+                <div
+                  className={`w-6 h-6 flex-shrink-0 transition-transform duration-200 ${
+                    openFAQ === index ? "rotate-45" : ""
+                  }`}
                 >
-                  <span className="text-sm">{social.icon}</span>
-                </a>
-              ))}
+                  <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
+                    <span className="text-white text-lg font-bold">+</span>
+                  </div>
+                </div>
+              </button>
+
+              <div
+                className={`px-6 transition-all duration-300 ease-in-out ${
+                  openFAQ === index
+                    ? "max-h-96 opacity-100 pb-4"
+                    : "max-h-0 opacity-0 overflow-hidden"
+                }`}
+              >
+                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Footer
+const Footer = () => {
+  return (
+    <footer className="bg-gradient-to-br from-purple-900 via-gray-800 to-purple-900 text-white py-10 relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
+
+      {/* Animated Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute top-20 left-20 w-64 h-64 bg-purple-500/10 rounded-full animate-pulse"
+          style={{ animationDuration: "40s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-purple-400/10 rounded-full animate-pulse"
+          style={{ animationDuration: "50s", animationDelay: "10s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-purple-600/5 rounded-full animate-pulse"
+          style={{ animationDuration: "60s", animationDelay: "5s" }}
+        ></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid md:grid-cols-4 gap-6">
+          {/* Company Info */}
+          <div className="col-span-2">
+            <h3 className="text-lg font-bold text-white mb-3">SoftwareHouse</h3>
+            <p className="text-gray-300 mb-4 max-w-md text-sm">
+              Your trusted partner in AI development and digital transformation.
+              We build solutions that drive real business value.
+            </p>
+            <div className="flex space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center hover:from-purple-500 hover:to-purple-600 transition-all duration-200 cursor-pointer hover:scale-110">
+                <span className="text-white font-semibold text-sm">L</span>
+              </div>
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center hover:from-purple-500 hover:to-purple-600 transition-all duration-200 cursor-pointer hover:scale-110">
+                <span className="text-white font-semibold text-sm">T</span>
+              </div>
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center hover:from-purple-500 hover:to-purple-600 transition-all duration-200 cursor-pointer hover:scale-110">
+                <span className="text-white font-semibold text-sm">F</span>
+              </div>
             </div>
           </div>
 
-          {/* Enhanced Services Links */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              {footerLinks.services.map((service, index) => (
-                <li key={index}>
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-base font-semibold text-white mb-3">
+              Quick Links
+            </h4>
+            <ul className="space-y-1">
+              {["About", "Services", "Portfolio", "Blog", "Contact"].map(
+                (item) => (
+                  <li key={item}>
+                    <a
+                      href={`#${item.toLowerCase()}`}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 hover:translate-x-1 inline-block text-sm"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-base font-semibold text-white mb-3">
+              Services
+            </h4>
+            <ul className="space-y-1">
+              {[
+                "AI Development",
+                "Web Development",
+                "Mobile Apps",
+                "Cloud Solutions",
+              ].map((service) => (
+                <li key={service}>
                   <a
                     href="#"
-                    className="text-primary-200 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 transform inline-block"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 hover:translate-x-1 inline-block text-sm"
                   >
                     {service}
                   </a>
@@ -1124,91 +1298,52 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Enhanced Company Links */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              {footerLinks.company.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="text-primary-200 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 transform inline-block"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Enhanced Newsletter Signup */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
-            <h4 className="text-lg font-semibold mb-4">Stay Updated</h4>
-            <p className="text-primary-200 text-sm mb-4">
-              Get the latest AI insights and trends.
+          {/* Newsletter Signup */}
+          <div>
+            <h4 className="text-base font-semibold text-white mb-3">
+              Newsletter
+            </h4>
+            <p className="text-gray-300 text-xs mb-3">
+              Stay updated with our latest insights and AI trends
             </p>
-
-            <div className="space-y-3">
+            <div className="space-y-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 glass border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-400 text-sm backdrop-blur-sm hover-lift transition-all duration-300"
+                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
               />
-              <button className="btn-modern w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-4 py-2 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-300 text-sm hover-lift shadow-glow-hover">
-                <span>Subscribe</span>
+              <button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-3 py-2 rounded-lg font-semibold transition-all duration-200 text-sm hover:shadow-lg">
+                Subscribe
               </button>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Bottom Bar */}
-        <div className="border-t border-white/20 mt-8 pt-6 animate-slide-up">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-            <div className="text-primary-200 text-sm">
-              © {currentYear} SoftwareHouse. All Rights Reserved.
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <a
-                href="#"
-                className="text-primary-200 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 transform inline-block"
-              >
-                Terms
-              </a>
-              <a
-                href="#"
-                className="text-primary-200 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 transform inline-block"
-              >
-                Privacy
-              </a>
-              <a
-                href="#"
-                className="text-primary-200 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 transform inline-block"
-              >
-                Support
-              </a>
-            </div>
-          </div>
+        <div className="border-t border-gray-700 mt-8 pt-6 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2024 SoftwareHouse. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-// Main Landing Page Component
-const LandingPage = () => {
+// Main App Component
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white scrollbar-modern">
+    <div className="min-h-screen">
       <Header />
-      <Hero />
-      <About />
-      <Services />
-      <WhyChooseUs />
-      <Testimonials />
-      <BlogSection />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Portfolio />
+        <Testimonials />
+        <BlogSection />
+        <FAQSection />
+      </main>
       <Footer />
     </div>
   );
-};
-
-export default LandingPage;
+}
